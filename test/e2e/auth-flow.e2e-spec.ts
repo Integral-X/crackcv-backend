@@ -34,8 +34,6 @@ describe('Auth Flow (e2e)', () => {
       expect(signupResponse.body).toHaveProperty('accessToken');
       expect(signupResponse.body).toHaveProperty('refreshToken');
 
-      const initialAccessToken = signupResponse.body.accessToken;
-
       // Step 2: Login with the same credentials
       const loginResponse = await request(app.getHttpServer())
         .post('/auth/login')

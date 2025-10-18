@@ -16,10 +16,11 @@ import { TokenPair } from '../../../src/modules/auth/entities/token-pair.entity'
 
 describe('AuthService', () => {
   let authService: AuthService;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   let usersService: UsersService;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let jwtService: JwtService;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let prismaService: DeepMockProxy<PrismaService>;
 
   beforeEach(async () => {
