@@ -71,14 +71,11 @@ async function bootstrap() {
   );
 
   // Swagger documentation
-  const appName = configService.get<string>(
-    'app.name',
-    'Smart CV Builder Backend',
-  );
+  const appName = configService.get<string>('app.name', 'CrackCV Backend');
   const appVersion = configService.get<string>('app.version', '1.0.0');
   const config = new DocumentBuilder()
     .setTitle(`${appName} API`)
-    .setDescription('Smart CV Builder Backend API')
+    .setDescription('CrackCV Backend API')
     .setVersion(appVersion)
     .addBearerAuth(
       {

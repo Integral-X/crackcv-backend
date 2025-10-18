@@ -1,7 +1,7 @@
 {
   "name": "crackcv-backend",
   "version": "1.0.0",
-  "description": "Smart CV Builder Backend API",
+  "description": "CrackCV Backend API",
   "author": "mahiuddinalkamal",
   "private": true,
   "license": "MIT",
