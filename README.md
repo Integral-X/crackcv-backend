@@ -60,7 +60,7 @@ npm run test:cov
 
 ## API Documentation
 
-[Swagger-UI](https://api.crackcv.com/api/v1/docs)
+API documentation is available via Swagger-UI at: [https://api.crackcv.com/api/v1/docs](https://api.crackcv.com/api/v1/docs)
 
 ## Contributing
 
