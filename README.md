@@ -35,7 +35,6 @@ cp .env.example .env
 ./stop.sh
 ```
 
-
 ## Feature Flags
 
 This project uses [Unleash](https://unleash.crackcv.com) for feature flag management.
@@ -58,6 +57,10 @@ npm run test:e2e
 # Test coverage
 npm run test:cov
 ```
+
+## API Documentation
+
+[Swagger-UI](https://api.crackcv.com/api/v1/docs)
 
 ## Contributing
 
