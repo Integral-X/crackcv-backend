@@ -184,4 +184,4 @@ For new features:
 - Use environment variables for secrets
 - Follow security best practices
 
-Thank you for contributing to Smart CV Builder Backend!
+Thank you for contributing to CrackCV Backend!

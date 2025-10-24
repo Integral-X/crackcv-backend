@@ -68,4 +68,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 ## License
 
-Copyright (c) 2025 Smart CV Builder.
+Copyright (c) 2025 CrackCV.

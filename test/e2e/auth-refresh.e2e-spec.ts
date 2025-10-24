@@ -27,21 +27,44 @@ describe('Auth Refresh (e2e)', () => {
     await app.close();
   });
 
-  it('/auth/refresh (POST) - successful refresh', () => {
-    return request(app.getHttpServer())
-      .post('/auth/refresh')
-      .send({ refreshToken })
-      .expect(200)
-      .expect(res => {
-        expect(res.body).toHaveProperty('accessToken');
-        expect(res.body).toHaveProperty('refreshToken');
-      });
-  });
+  describe('/auth/refresh (POST)', () => {
+    it('should refresh tokens successfully with valid refresh token', () => {
+      return request(app.getHttpServer())
+        .post('/auth/refresh')
+        .send({ refreshToken })
+        .expect(200)
+        .expect(res => {
+          expect(res.body).toHaveProperty('accessToken');
+          expect(res.body).toHaveProperty('refreshToken');
+          expect(typeof res.body.accessToken).toBe('string');
+          expect(typeof res.body.refreshToken).toBe('string');
+          // New tokens should be valid strings
+          expect(res.body.refreshToken.length).toBeGreaterThan(0);
+        });
+    });
 
-  it('/auth/refresh (POST) - unauthorized refresh with invalid token', () => {
-    return request(app.getHttpServer())
-      .post('/auth/refresh')
-      .send({ refreshToken: 'invalidtoken' })
-      .expect(401);
+    it('should return 401 for invalid refresh token', () => {
+      return request(app.getHttpServer())
+        .post('/auth/refresh')
+        .send({ refreshToken: 'invalidtoken' })
+        .expect(401);
+    });
+
+    it('should return 400 for missing refresh token', () => {
+      return request(app.getHttpServer())
+        .post('/auth/refresh')
+        .send({})
+        .expect(400); // Should now return 400 with our validation fix
+    });
+
+    it('should return 401 for expired refresh token', () => {
+      const expiredToken =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE1MTYyMzkwMjJ9.invalid';
+
+      return request(app.getHttpServer())
+        .post('/auth/refresh')
+        .send({ refreshToken: expiredToken })
+        .expect(401);
+    });
   });
 });
