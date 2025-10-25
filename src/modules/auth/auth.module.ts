@@ -15,10 +15,13 @@ import { AuthMapper } from './mappers/auth.mapper';
   imports: [
     PassportModule,
     JwtModule.registerAsync({
-      useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),
-        signOptions: { expiresIn: configService.get<string>('JWT_EXPIRES_IN') },
-      }),
+      useFactory: async (configService: ConfigService) => {
+        const expiresIn = configService.get<string>('JWT_EXPIRES_IN') || '15m';
+        return {
+          secret: configService.get<string>('JWT_SECRET'),
+          signOptions: { expiresIn },
+        };
+      },
       inject: [ConfigService],
     }),
     WinstonModule,
