@@ -1,39 +1,55 @@
 version: '3.8'
 
 services:
+  # Backend API
+  backend:
+    build: .
+    container_name: crackcv-backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    networks:
+      - crackcv-network
+    environment:
+      - DATABASE_URL=postgres://crackcv:password@postgres:5432/crackcv_dev
+
   # PostgreSQL Database
   postgres:
     image: postgres:15-alpine
-    container_name: smartcv-postgres
+    container_name: crackcv-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: smartcv_dev
-      POSTGRES_USER: smartcv
+      POSTGRES_DB: crackcv_dev
+      POSTGRES_USER: crackcv
       POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - smartcv-network
+      - crackcv-network
 
   # Test PostgreSQL Database
   postgres_test:
     image: postgres:15-alpine
-    container_name: smartcv-postgres-test
+    container_name: crackcv-postgres-test
     restart: unless-stopped
     environment:
-      POSTGRES_DB: smartcv_test
-      POSTGRES_USER: smartcv
+      POSTGRES_DB: crackcv_test
+      POSTGRES_USER: crackcv
       POSTGRES_PASSWORD: password
     ports:
       - "5433:5432"
     networks:
-      - smartcv-network
+      - crackcv-network
 
 volumes:
   postgres_data:
 
 networks:
-  smartcv-network:
+  crackcv-network:
     driver: bridge

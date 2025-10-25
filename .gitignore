@@ -129,3 +129,6 @@ storage/
 
 # Prisma
 prisma/migrations/dev.db*
+
+# Kiro
+.kiro

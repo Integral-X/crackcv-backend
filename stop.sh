@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "Stopping Smart CV Builder services..."
+echo "Stopping CrackCV Backend service..."
 
 # Stop the development server if running
 echo "Stopping development server..."

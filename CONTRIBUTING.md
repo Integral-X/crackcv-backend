@@ -1,4 +1,4 @@
-# Contributing to Smart CV Builder Backend
+# Contributing to Crack CV Backend
 
 This document provides guidelines and information for contributors.
 
@@ -13,8 +13,8 @@ This document provides guidelines and information for contributors.
 
 1. **Fork and clone the repository**
    ```bash
-   git clone https://github.com/integral-x/smart-cv-builder-backend.git
-   cd smart-cv-builder-backend
+   git clone https://github.com/integral-x/crackcv-backend.git
+   cd crackcv-backend
    ```
 
 2. **Install dependencies**
@@ -184,4 +184,4 @@ For new features:
 - Use environment variables for secrets
 - Follow security best practices
 
-Thank you for contributing to Smart CV Builder Backend!
+Thank you for contributing to CrackCV Backend!
