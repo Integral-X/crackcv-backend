@@ -21,7 +21,7 @@ import { AuthMapper } from './mappers/auth.mapper';
         const expiresIn = configService.get<string>('JWT_EXPIRES_IN') || '15m';
         return {
           secret: configService.get<string>('JWT_SECRET'),
-          signOptions: { expiresIn: expiresIn as any },
+          signOptions: { expiresIn },
         };
       },
       inject: [ConfigService],
