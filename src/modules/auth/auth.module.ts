@@ -1,6 +1,6 @@
 import { Module, Logger } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
-import { JwtModule } from '@nestjs/jwt';
+import { JwtModule, JwtModuleOptions } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { WinstonModule } from 'nest-winston';
 import { AuthService } from './auth.service';
@@ -15,10 +15,15 @@ import { AuthMapper } from './mappers/auth.mapper';
   imports: [
     PassportModule,
     JwtModule.registerAsync({
-      useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),
-        signOptions: { expiresIn: configService.get<string>('JWT_EXPIRES_IN') },
-      }),
+      useFactory: async (
+        configService: ConfigService,
+      ): Promise<JwtModuleOptions> => {
+        const expiresIn = configService.get<string>('JWT_EXPIRES_IN') || '15m';
+        return {
+          secret: configService.get<string>('JWT_SECRET'),
+          signOptions: { expiresIn: expiresIn as any },
+        };
+      },
       inject: [ConfigService],
     }),
     WinstonModule,
